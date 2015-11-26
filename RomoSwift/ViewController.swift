@@ -14,6 +14,12 @@ class ViewController: UIViewController, RMCoreDelegate{
     var romo: RMCharacter?
     var robot: RMCoreRobotRomo3?
     
+    // Romo表情
+//    let numberOfExpressions: UInt32 = 19
+//    let numberOfEmotions: UInt32 = 7
+    let numberOfExpressions: UInt32 = 32
+    let numberOfEmotions: UInt32 = 10
+    
     @IBOutlet weak var label2: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +54,7 @@ class ViewController: UIViewController, RMCoreDelegate{
         let myAppFrameSizeStr: NSString = "applicationFrame width: \(myAppFrameSize.width) NativeBoundheight: \(myAppFrameSize.height)"
         print (myAppFrameSizeStr)
         
+        // MQTT
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
             let now = NSDate() // 現在日時の取得
             let dateFormatter = NSDateFormatter()
@@ -93,20 +100,56 @@ class ViewController: UIViewController, RMCoreDelegate{
                         var likedislikeString:String?
                         var joysadString:String?
                         var angerfearString:String?
+                        
+                        var expression:UInt32?
+                        var emotion:UInt32?
                     
                         if let likedislike = json["likedislike"].asInt {
+                            if likedislike >= 1{
+                                expression = 6  // RMCharacterExpressionExcited
+                                emotion = 10    // RMCharacterEmotionDelighted
+                            }
+                            else if likedislike <= -1 {
+                                expression = 27 // RMCharacterExpressionBewildered
+                                emotion = 9     // RMCharacterEmotionBewildered
+                            }
                             print(likedislike)
                             likedislikeString = String(likedislike)
                         }
                         if let joysad = json["joysad"].asInt {
+                            if joysad >= 1 {
+                                expression = 8  // RMCharacterExpressionHappy
+                                emotion = 3     // RMCharacterEmotionHappy
+                            }
+                            else if joysad <= -1 {
+                                expression = 14 // RMCharacterExpressionSad
+                                emotion = 4     // RMCharacterEmotionSad
+                            }
                             print(joysad)
                             joysadString = String(joysad)
                         }
                         if let angerfear = json["angerfear"].asInt {
+                            if angerfear >= 1{
+                                expression = 1  // RMCharacterExpressionAngry
+                                emotion = 8     // RMCharacterEmotionIndifferent
+                            }
+                            else if angerfear <= -1{
+                                expression = 15 // RMCharacterExpressionScared
+                                emotion = 5     // RMCharacterEmotionScared
+                            }
                             print(angerfear)
                             angerfearString = String(angerfear)
                         }
-                    
+                        
+                        if expression != nil && emotion != nil {
+                            self.romo?.setExpression(RMCharacterExpression(expression!), withEmotion: RMCharacterEmotion(emotion!))
+                        }
+                        else{
+                            let randomExpression = RMCharacterExpression(arc4random_uniform(self.numberOfExpressions) + 1)
+                            let randomEmotion = RMCharacterEmotion(arc4random_uniform(self.numberOfEmotions) + 1)
+                            self.romo?.setExpression(randomExpression, withEmotion: randomEmotion)
+                        }
+
                         dispatch_async(dispatch_get_main_queue(), {
                             for view in self.view.subviews {
                                 if (view.isKindOfClass(UILabel)) {
@@ -122,6 +165,8 @@ class ViewController: UIViewController, RMCoreDelegate{
                             label3.text = tweet + "\n" + "LikeDislike : " + likedislikeString! + "\n" + "JoySad : " + joysadString! + "\n" + "AngerFear : " + angerfearString!
                     
                             self.view.addSubview(label3)
+                            
+                            
                         })
                     }.resume()
                 }
@@ -169,9 +214,6 @@ class ViewController: UIViewController, RMCoreDelegate{
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         romo?.lookAtDefault()
-        
-        let numberOfExpressions: UInt32 = 19
-        let numberOfEmotions: UInt32 = 7
         
         let randomExpression = RMCharacterExpression(arc4random_uniform(numberOfExpressions) + 1)
         let randomEmotion = RMCharacterEmotion(arc4random_uniform(numberOfEmotions) + 1)
