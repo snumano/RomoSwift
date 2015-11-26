@@ -175,12 +175,12 @@ class ViewController: UIViewController, RMCoreDelegate{
         let numberOfEmotions: UInt32 = 7
         
         let randomExpression = RMCharacterExpression(arc4random_uniform(numberOfExpressions) + 1)
-        let randomEmotion = RMCharacterEmotion(arc4random_uniform(numberOfEmotions) + 1)
-
+        let randomEmotion = RMCharacterEmotion(arc4random_uniform(numberOfExpressions) + 1)
+        
         romo?.setExpression(randomExpression, withEmotion: randomEmotion)
     }
     
-    override func touchesCancelled(touches: Set<UITouch>!, withEvent event: UIEvent!) {
+    override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
         romo?.lookAtDefault()
     }
     
@@ -252,7 +252,5 @@ class ViewController: UIViewController, RMCoreDelegate{
             return "I'll be right here"
         }
     }
-
-
 }
 

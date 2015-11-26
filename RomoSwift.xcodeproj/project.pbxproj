@@ -25,6 +25,7 @@
 		7C407F631C0494AC00C29E25 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C407F621C0494AC00C29E25 /* json.swift */; };
 		7C5F11A81C00CF5F00E7AB2E /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C5F11A71C00CF5F00E7AB2E /* Images-2.xcassets */; };
 		7C5F11AA1C00CF8A00E7AB2E /* Images-3.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C5F11A91C00CF8A00E7AB2E /* Images-3.xcassets */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

@@ -14,8 +14,11 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+<<<<<<< HEAD
 *~
 config.json
+=======
+>>>>>>> origin/master
 
 # CocoaPods
 #
