@@ -257,6 +257,12 @@ class ViewController: UIViewController, RMCoreDelegate{
     func robotDidConnect(robot: RMCoreRobot!) {
         if robot.drivable && robot.headTiltable && robot.LEDEquipped {
             self.robot = robot as? RMCoreRobotRomo3
+            
+            self.robot?.tiltToAngle(10.0, completion: nil)
+            sleep(2)
+            self.robot?.tiltToAngle(-10.0, completion: nil)
+            sleep(2)
+            self.robot?.tiltToAngle(10.0, completion: nil)
         }
     }
     
