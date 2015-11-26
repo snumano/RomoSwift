@@ -1,0 +1,12 @@
+{
+  "mqtt":{
+        "host":"meshblu.octoblu.com",
+	"uuid":"hogehoge",
+	"password":"hogehoge"
+	},
+  "mextractr":{
+	"url":"http://ap.mextractr.net/ma9/emotion_analyzer",
+	"apikey":"hogehoge",
+	"out":"json"
+	}
+}

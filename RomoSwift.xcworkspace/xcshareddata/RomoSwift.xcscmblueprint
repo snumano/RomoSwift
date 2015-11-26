@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8274176BFA20015F8E1035DDA61B01DB1CD791B9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8274176BFA20015F8E1035DDA61B01DB1CD791B9" : 0,
+    "6A4B31B57E14E5921DD94BCBC053E4A99028AD01" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B59188D2-3026-49FA-BD92-627C857CAED5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8274176BFA20015F8E1035DDA61B01DB1CD791B9" : "RomoSwift\/",
+    "6A4B31B57E14E5921DD94BCBC053E4A99028AD01" : "..\/..\/Downloads\/swift-json"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "RomoSwift",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "RomoSwift.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dankogai\/swift-json.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6A4B31B57E14E5921DD94BCBC053E4A99028AD01"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:snumano\/RomoSwift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8274176BFA20015F8E1035DDA61B01DB1CD791B9"
+    }
+  ]
+}
