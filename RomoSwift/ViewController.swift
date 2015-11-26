@@ -26,7 +26,6 @@ class ViewController: UIViewController, RMCoreDelegate{
         
         let jsonString:String = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
         let json = JSON(string:jsonString)
-        print(json["mqtt"]["host"].asString!)
         
         // Romo
         romo = RMCharacter.Romo()
