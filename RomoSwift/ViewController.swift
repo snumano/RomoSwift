@@ -19,8 +19,7 @@ class ViewController: UIViewController, RMCoreDelegate{
 //    let numberOfEmotions: UInt32 = 7
     let numberOfExpressions: UInt32 = 32
     let numberOfEmotions: UInt32 = 10
-    
-    @IBOutlet weak var label2: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -157,14 +156,14 @@ class ViewController: UIViewController, RMCoreDelegate{
                                 }
                             }
                     
-                            let label3 = UILabel(frame: CGRectMake(0, 450, 320, 100))
-                            label3.numberOfLines = 4
-                            label3.textAlignment = NSTextAlignment.Center
+                            let label = UILabel(frame: CGRectMake(0, 450, 320, 100))
+                            label.numberOfLines = 4
+                            label.textAlignment = NSTextAlignment.Center
                     //                        label3.text = self.randomWord(8)
                     
-                            label3.text = tweet + "\n" + "LikeDislike : " + likedislikeString! + "\n" + "JoySad : " + joysadString! + "\n" + "AngerFear : " + angerfearString!
+                            label.text = tweet + "\n" + "LikeDislike : " + likedislikeString! + "\n" + "JoySad : " + joysadString! + "\n" + "AngerFear : " + angerfearString!
                     
-                            self.view.addSubview(label3)
+                            self.view.addSubview(label)
                             
                             
                         })
@@ -258,11 +257,12 @@ class ViewController: UIViewController, RMCoreDelegate{
         if robot.drivable && robot.headTiltable && robot.LEDEquipped {
             self.robot = robot as? RMCoreRobotRomo3
             
-            self.robot?.tiltToAngle(10.0, completion: nil)
+            self.robot?.tiltToAngle(130.0, completion: nil)
             sleep(2)
-            self.robot?.tiltToAngle(-10.0, completion: nil)
+            self.robot?.tiltToAngle(70.0, completion: nil)
             sleep(2)
-            self.robot?.tiltToAngle(10.0, completion: nil)
+            self.robot?.tiltToAngle(130.0, completion: nil)
+            
         }
     }
     
