@@ -109,10 +109,24 @@ class ViewController: UIViewController, RMCoreDelegate{
                             if likedislike >= 1{
                                 expression = 6  // RMCharacterExpressionExcited
                                 emotion = 10    // RMCharacterEmotionDelighted
+                                
+                                self.robot?.turnByAngle(-30.0, withRadius: 0.0, completion: nil)
+                                sleep(1)
+                                self.robot?.turnByAngle(30.0, withRadius: 0.0, completion: nil)
+                                sleep(1)
+                                self.robot?.stopDriving()
+                                
+
                             }
                             else if likedislike <= -1 {
                                 expression = 27 // RMCharacterExpressionBewildered
                                 emotion = 9     // RMCharacterEmotionBewildered
+                        
+                                self.robot?.driveForwardWithSpeed(0.1)
+                                sleep(1)
+                                self.robot?.driveBackwardWithSpeed(0.1)
+                                sleep(1)
+                                self.robot?.stopDriving()
                             }
                             print(likedislike)
                             likedislikeString = String(likedislike)
@@ -133,10 +147,21 @@ class ViewController: UIViewController, RMCoreDelegate{
                             if angerfear >= 1{
                                 expression = 1  // RMCharacterExpressionAngry
                                 emotion = 8     // RMCharacterEmotionIndifferent
+                                
+                                self.robot?.tiltToAngle(130.0, completion: nil)
+                                sleep(2)
+                                self.robot?.tiltToAngle(70.0, completion: nil)
+                                sleep(2)
+                                self.robot?.tiltToAngle(130.0, completion: nil)
+                                
                             }
                             else if angerfear <= -1{
                                 expression = 15 // RMCharacterExpressionScared
                                 emotion = 5     // RMCharacterEmotionScared
+                                
+                                self.robot?.LEDs.blinkWithPeriod(1.0, dutyCycle: 3.0)
+                                sleep(3)
+                                self.robot?.LEDs.turnOff()
                             }
                             print(angerfear)
                             angerfearString = String(angerfear)
@@ -160,7 +185,7 @@ class ViewController: UIViewController, RMCoreDelegate{
                     
                             let label = UILabel(frame: CGRectMake(0, 450, 320, 100))
                             label.numberOfLines = 4
-                            label.textAlignment = NSTextAlignment.Center                    
+                            label.textAlignment = NSTextAlignment.Center
                             label.text = tweet + "\n" + "LikeDislike : " + likedislikeString! + "\n" + "JoySad : " + joysadString! + "\n" + "AngerFear : " + angerfearString!
                     
                             self.view.addSubview(label)
@@ -268,13 +293,13 @@ class ViewController: UIViewController, RMCoreDelegate{
     func robotDidConnect(robot: RMCoreRobot!) {
         if robot.drivable && robot.headTiltable && robot.LEDEquipped {
             self.robot = robot as? RMCoreRobotRomo3
-            
+ /*
             self.robot?.tiltToAngle(130.0, completion: nil)
             sleep(2)
             self.robot?.tiltToAngle(70.0, completion: nil)
             sleep(2)
             self.robot?.tiltToAngle(130.0, completion: nil)
-            
+ */
         }
     }
     
