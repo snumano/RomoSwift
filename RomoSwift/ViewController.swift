@@ -20,6 +20,8 @@ class ViewController: UIViewController, RMCoreDelegate{
     let numberOfExpressions: UInt32 = 32
     let numberOfEmotions: UInt32 = 10
 
+//    let label:UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -158,9 +160,7 @@ class ViewController: UIViewController, RMCoreDelegate{
                     
                             let label = UILabel(frame: CGRectMake(0, 450, 320, 100))
                             label.numberOfLines = 4
-                            label.textAlignment = NSTextAlignment.Center
-                    //                        label3.text = self.randomWord(8)
-                    
+                            label.textAlignment = NSTextAlignment.Center                    
                             label.text = tweet + "\n" + "LikeDislike : " + likedislikeString! + "\n" + "JoySad : " + joysadString! + "\n" + "AngerFear : " + angerfearString!
                     
                             self.view.addSubview(label)
@@ -213,11 +213,23 @@ class ViewController: UIViewController, RMCoreDelegate{
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         romo?.lookAtDefault()
-        
+
         let randomExpression = RMCharacterExpression(arc4random_uniform(numberOfExpressions) + 1)
         let randomEmotion = RMCharacterEmotion(arc4random_uniform(numberOfEmotions) + 1)
 
         romo?.setExpression(randomExpression, withEmotion: randomEmotion)
+        
+        for view in self.view.subviews {
+            if (view.isKindOfClass(UILabel)) {
+                view.removeFromSuperview()
+            }
+        }
+        let label = UILabel(frame: CGRectMake(0, 450, 320, 100))
+        label.numberOfLines = 4
+        label.textAlignment = NSTextAlignment.Center
+        label.text = self.randomWord(8)
+        
+        self.view.addSubview(label)
     }
     
     override func touchesCancelled(touches: Set<UITouch>!, withEvent event: UIEvent!) {
@@ -277,8 +289,7 @@ class ViewController: UIViewController, RMCoreDelegate{
         
         switch wordNo {
         case 1:
-            return "おはようございます"
-            //return "Hello, My name is Romo"
+            return "Hello, My name is Romo"
         case 2:
             return "once in a blue moon"
         case 3:
