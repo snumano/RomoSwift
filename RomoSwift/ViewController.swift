@@ -15,12 +15,8 @@ class ViewController: UIViewController, RMCoreDelegate{
     var robot: RMCoreRobotRomo3?
     
     // Romo表情
-//    let numberOfExpressions: UInt32 = 19
-//    let numberOfEmotions: UInt32 = 7
     let numberOfExpressions: UInt32 = 32
     let numberOfEmotions: UInt32 = 10
-
-//    let label:UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,15 +72,9 @@ class ViewController: UIViewController, RMCoreDelegate{
             mqttConfig.onMessageCallback = { mqttMessage in
                 NSLog("MQTT Message received: payload=\(mqttMessage.payloadString)")
             
-            //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
                 let msg  : String   = mqttMessage.payloadString!
-//                NSLog(msg)
-            
                 let jsonMqtt = JSON(string:msg)
-               
                 if let tweet = jsonMqtt["data"]["payload"]["tweet"].asString {
-//                    NSLog(tweet)
-                    
                     let base_url = json["mextractr"]["url"].asString!
                     let apikey = json["mextractr"]["apikey"].asString!
                     let out = json["mextractr"]["out"].asString!
@@ -93,7 +83,6 @@ class ViewController: UIViewController, RMCoreDelegate{
                     let url = NSURL(string: urlString)!
                     let request = NSURLRequest(URL: url)
                     let session = NSURLSession.sharedSession()
-
                     session.dataTaskWithRequest(request) { (data, response, error) in
                         let jsonString: String = NSString(data: data!, encoding: NSASCIIStringEncoding)! as String
                         let json = JSON(string:jsonString)
@@ -101,10 +90,8 @@ class ViewController: UIViewController, RMCoreDelegate{
                         var likedislikeString:String?
                         var joysadString:String?
                         var angerfearString:String?
-                        
                         var expression:UInt32?
                         var emotion:UInt32?
-                    
                         if let likedislike = json["likedislike"].asInt {
                             if likedislike >= 1{
                                 expression = 6  // RMCharacterExpressionExcited
@@ -115,8 +102,6 @@ class ViewController: UIViewController, RMCoreDelegate{
                                 self.robot?.turnByAngle(30.0, withRadius: 0.0, completion: nil)
                                 sleep(1)
                                 self.robot?.stopDriving()
-                                
-
                             }
                             else if likedislike <= -1 {
                                 expression = 27 // RMCharacterExpressionBewildered
@@ -189,8 +174,6 @@ class ViewController: UIViewController, RMCoreDelegate{
                             label.text = tweet + "\n" + "LikeDislike : " + likedislikeString! + "\n" + "JoySad : " + joysadString! + "\n" + "AngerFear : " + angerfearString!
                     
                             self.view.addSubview(label)
-                            
-                            
                         })
                     }.resume()
                 }
@@ -216,13 +199,11 @@ class ViewController: UIViewController, RMCoreDelegate{
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         romo?.addToSuperview(self.view)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         romo?.removeFromSuperview()
     }
     
@@ -293,13 +274,6 @@ class ViewController: UIViewController, RMCoreDelegate{
     func robotDidConnect(robot: RMCoreRobot!) {
         if robot.drivable && robot.headTiltable && robot.LEDEquipped {
             self.robot = robot as? RMCoreRobotRomo3
- /*
-            self.robot?.tiltToAngle(130.0, completion: nil)
-            sleep(2)
-            self.robot?.tiltToAngle(70.0, completion: nil)
-            sleep(2)
-            self.robot?.tiltToAngle(130.0, completion: nil)
- */
         }
     }
     
@@ -335,7 +309,5 @@ class ViewController: UIViewController, RMCoreDelegate{
             return "I'll be right here"
         }
     }
-
-
 }
 
