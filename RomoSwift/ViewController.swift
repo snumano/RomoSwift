@@ -63,9 +63,9 @@ class ViewController: UIViewController, RMCoreDelegate{
             let mqttConfig = MQTTConfig(clientId: client, host: json["mqtt"]["host"].asString!, port: 1883, keepAlive: 60)
             mqttConfig.mqttAuthOpts = MQTTAuthOpts(username: json["mqtt"]["uuid"].asString!, password: json["mqtt"]["password"].asString!)
         
-            mqttConfig.onPublishCallback = { messageId in
-                NSLog("published (mid=\(messageId))")
-            }
+//            mqttConfig.onPublishCallback = { messageId in
+//                NSLog("published (mid=\(messageId))")
+//            }
             mqttConfig.onSubscribeCallback = { (messageId, grantedQos) in
                 NSLog("subscribed (mid=\(messageId),grantedQos=\(grantedQos))")
             }
@@ -181,9 +181,11 @@ class ViewController: UIViewController, RMCoreDelegate{
         
             let mqttClient = MQTT.newConnection(mqttConfig)
             mqttClient.subscribe("e23171fb-f261-46a8-b454-27cc14f54353", qos: 2)
+            /*
             sleep(2)
         //        mqttClient.publishString(payload, topic: "message", qos: 2, retain: false)
         //    sleep(2)
+            */
         
             while true {
             }
