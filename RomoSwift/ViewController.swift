@@ -180,7 +180,7 @@ class ViewController: UIViewController, RMCoreDelegate{
             }
         
             let mqttClient = MQTT.newConnection(mqttConfig)
-            mqttClient.subscribe("e23171fb-f261-46a8-b454-27cc14f54353", qos: 2)
+            mqttClient.subscribe(json["mqtt"]["uuid"].asString!, qos: 2)
             /*
             sleep(2)
         //        mqttClient.publishString(payload, topic: "message", qos: 2, retain: false)
