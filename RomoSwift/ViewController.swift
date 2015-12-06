@@ -74,7 +74,8 @@ class ViewController: UIViewController, RMCoreDelegate{
             
                 let msg  : String   = mqttMessage.payloadString!
                 let jsonMqtt = JSON(string:msg)
-                if let tweet = jsonMqtt["data"]["payload"]["tweet"].asString {
+//                if let tweet = jsonMqtt["data"]["payload"]["tweet"].asString {
+                  if let tweet = jsonMqtt["data"]["payload"].asString {
                     let base_url = json["mextractr"]["url"].asString!
                     let apikey = json["mextractr"]["apikey"].asString!
                     let out = json["mextractr"]["out"].asString!
