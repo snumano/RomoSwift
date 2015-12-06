@@ -1,6 +1,6 @@
 {
   "mqtt":{
-        "host":"meshblu.octoblu.com",
+        "host":"x.x.x.x",
 	"uuid":"hogehoge",
 	"password":"hogehoge"
 	},
